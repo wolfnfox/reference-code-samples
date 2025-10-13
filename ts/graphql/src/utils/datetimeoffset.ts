@@ -9,7 +9,7 @@ const DateTimeOffset = new GraphQLScalarType({
     if (!(value instanceof DateTime)) {
       throw new TypeError(`Value is not an instance of DateTime: ${typeof value}`);
     }
-    return (value as DateTime).toISO();
+    return value.toISO();
   },
   parseValue(value: string): DateTime {
     const datetime = DateTime.fromISO(value);

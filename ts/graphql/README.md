@@ -1,3 +1,3 @@
-# (GraphQL Reference) GraphQL Server using Apollo + Prism
+# (GraphQL Reference) GraphQL Server using Apollo + Prisma
 
-This is a refence example for a GraphQL server using @apollo/server and prisma ORM.
+This is a reference example for a GraphQL server using @apollo/server and prisma ORM.

@@ -6,14 +6,8 @@ import path from 'path';
 
 const typeDefs = gql(readFileSync(path.join(__dirname, 'schema.graphql'), { encoding: 'utf-8' }));
 
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!',
-  },
-};
-
 async function startApolloServer(): Promise<void> {
-  const server = new ApolloServer({ typeDefs /*resolvers*/ });
+  const server = new ApolloServer({ typeDefs });
   const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
   console.log(`🚀  Server ready at: ${url}`);
 }
