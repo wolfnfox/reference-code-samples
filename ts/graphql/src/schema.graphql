@@ -1,0 +1,84 @@
+"The `DateTimeOffset` scalar type represents a date and time with an offset from UTC.  Example: `2025-04-05T14:30:00+02:00` or `2025-04-05T12:30:00Z`."
+scalar DateTimeOffset
+
+"A musical artist"
+type Artist {
+  "A unique identifier for the artist"
+  id: ID!
+  "The name of the artist"
+  name: String!
+  "The albums created by the artist"
+  albums: [Album!]!
+}
+
+"A musical album"
+type Album {
+  "A unique identifier for the album"
+  id: ID!
+  "The title of the album"
+  title: String!
+  "The artist who created the album"
+  artist: Artist!
+  "The songs in the album"
+  songs: [Song!]!
+  "The release date of the album"
+  releasedAt: DateTimeOffset!
+}
+
+"A song in an album"
+type Song {
+  "A unique identifier for the song"
+  id: ID!
+  "The title of the song"
+  title: String!
+  "The duration of the song in seconds"
+  duration: Int!
+  "The album this song belongs to"
+  album: Album!
+  "The artist who performed the song"
+  artist: Artist!
+}
+
+"A playlist of songs"
+type Playlist {
+  "A unique identifier for the playlist"
+  id: ID!
+  "The name of the playlist"
+  name: String!
+  "A description of the playlist"
+  description: String
+  "The songs included in the playlist"
+  songs: [Song!]!
+  "The date and time when the playlist was created"
+  createdAt: DateTimeOffset!
+  "The date and time when the playlist was last updated"
+  updatedAt: DateTimeOffset!
+}
+
+type Query {
+  "Get an artist by their ID"
+  artist(id: ID!): Artist
+  "Get all artists"
+  artists: [Artist!]!
+  "Get an album by its ID"
+  album(id: ID!): Album
+  "Get all albums by an artist"
+  albums(artistId: ID!): [Album!]!
+  "Get a song by its ID"
+  song(id: ID!): Song
+  "Get a playlist by its ID"
+  playlist(id: ID!): Playlist
+  "List all playlists"
+  playlists: [Playlist!]!
+  "Search for songs by name"
+  searchSongs(name: String!): [Song!]!
+}
+
+type Mutation {
+  "Create a new playlist"
+  createPlaylist(name: String!, description: String, songIds: [ID!]!): Playlist!
+  "Add a song to a playlist"
+  addSongToPlaylist(playlistId: ID!, songId: ID!): Playlist!
+  "Remove a song from a playlist"
+  removeSongFromPlaylist(playlistId: ID!, songId: ID!): Playlist!
+}

@@ -1,0 +1,14 @@
+{
+  "name": "reference-code-samples",
+  "version": "0.0.0",
+  "description": "A collection of reference code samples in TypeScript.",
+  "keywords": [
+    "typescript"
+  ],
+  "author": "wolfnfox",
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.1",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
