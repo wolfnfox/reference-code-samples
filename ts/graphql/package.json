@@ -13,6 +13,10 @@
     "generate:prisma": "npx prisma generate",
     "migrate": "pnpm -s run start:db && npx prisma migrate dev"
   },
+  "prisma": {
+    "schema": "prisma/schema.prisma",
+    "seed": "tsx prisma/seed.ts"
+  },
   "keywords": [
     "graphql",
     "apollo",

@@ -83,7 +83,7 @@ type Mutation {
   removeSongFromPlaylist(input: RemoveFromPlaylistInput!): Playlist!
 }
 
-type CreatePlaylistInput {
+input CreatePlaylistInput {
   "The name of the playlist"
   name: String!
   "A description of the playlist"
@@ -92,14 +92,14 @@ type CreatePlaylistInput {
   songIds: [ID!]!
 }
 
-type AddToPlaylistInput {
+input AddToPlaylistInput {
   "The ID of the playlist"
   playlistId: ID!
   "The ID of the song to add"
   songId: ID!
 }
 
-type RemoveFromPlaylistInput {
+input RemoveFromPlaylistInput {
   "The ID of the playlist"
   playlistId: ID!
   "The ID of the song to remove"
