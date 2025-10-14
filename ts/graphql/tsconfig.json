@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
     "outDir": "./dist",
     "target": "esnext",
     "module": "commonjs",
@@ -17,7 +16,7 @@
     "lib": ["esnext"],
     "types": ["node"]
   },
-  "files": ["src/graphql.d.ts"],
+  "files": ["src/graphql.d.ts", "prisma/seed.ts"],
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "codegen.ts"]
+  "exclude": ["node_modules", "dist", "graphql-codegen.ts"]
 }

@@ -1,11 +1,21 @@
 {
   "name": "graphql",
   "version": "0.0.0",
-  "description": "A reference example for a GraphQL API with Apollo Server, Prisma, and TypeScript.",
+  "description": "A reference example for a GraphQL API with Apollo Server and Prisma in TypeScript.",
   "main": "src/main.ts",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development ts-node-dev src/main.ts",
-    "start": "cross-env NODE_ENV=production tsx src/main.ts"
+    "compile": "tsc",
+    "dev": "pnpm -s run start:db && cross-env NODE_ENV=development ts-node-dev src/main.ts",
+    "start": "pnpm -s run start:db && cross-env NODE_ENV=production tsx src/main.ts",
+    "start:db": "docker compose up -d",
+    "generate": "pnpm -s run generate:graphql && pnpm -s run generate:prisma",
+    "generate:graphql": "graphql-codegen --config graphql-codegen.ts",
+    "generate:prisma": "npx prisma generate",
+    "migrate": "pnpm -s run start:db && npx prisma migrate dev"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma",
+    "seed": "tsx prisma/seed.ts"
   },
   "keywords": [
     "graphql",
@@ -17,6 +27,9 @@
   "license": "MIT",
   "packageManager": "pnpm@10.15.1",
   "devDependencies": {
+    "@graphql-codegen/cli": "^6.0.0",
+    "@graphql-codegen/typescript": "^5.0.2",
+    "@graphql-codegen/typescript-resolvers": "^5.1.0",
     "@prisma/client": "^6.17.1",
     "@types/luxon": "^3.7.1",
     "@types/node": "22.13.14",

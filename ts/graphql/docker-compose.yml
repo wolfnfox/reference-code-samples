@@ -1,0 +1,13 @@
+services:
+  graphql-db-postgres:
+    image: postgres:18
+    ports:
+      - '4040:5432'
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+volumes:
+  pgdata:
+    driver: local

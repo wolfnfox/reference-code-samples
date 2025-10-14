@@ -70,15 +70,38 @@ type Query {
   playlist(id: ID!): Playlist
   "List all playlists"
   playlists: [Playlist!]!
-  "Search for songs by name"
-  searchSongs(name: String!): [Song!]!
+  "Search for songs by title"
+  searchSongs(title: String!): [Song!]!
 }
 
 type Mutation {
   "Create a new playlist"
-  createPlaylist(name: String!, description: String, songIds: [ID!]!): Playlist!
+  createPlaylist(input: CreatePlaylistInput!): Playlist!
   "Add a song to a playlist"
-  addSongToPlaylist(playlistId: ID!, songId: ID!): Playlist!
+  addSongToPlaylist(input: AddToPlaylistInput!): Playlist!
   "Remove a song from a playlist"
-  removeSongFromPlaylist(playlistId: ID!, songId: ID!): Playlist!
+  removeSongFromPlaylist(input: RemoveFromPlaylistInput!): Playlist!
+}
+
+input CreatePlaylistInput {
+  "The name of the playlist"
+  name: String!
+  "A description of the playlist"
+  description: String
+  "The IDs of the songs to include in the playlist"
+  songIds: [ID!]!
+}
+
+input AddToPlaylistInput {
+  "The ID of the playlist"
+  playlistId: ID!
+  "The ID of the song to add"
+  songId: ID!
+}
+
+input RemoveFromPlaylistInput {
+  "The ID of the playlist"
+  playlistId: ID!
+  "The ID of the song to remove"
+  songId: ID!
 }
